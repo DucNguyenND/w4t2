@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    h1{color: red;}
+    div{ width: 100%;}
+    tr:nth-child(odd) {
+        background: antiquewhite;
+    }
+</style>
+<body>
+<div align="center">
+<h1>Quản Lý Học Viên Cho CodeGym</h1>
+<br>
+<input type="text" id="name" placeholder="Nhập tên">
+<br>
+<input type="text" id="age" placeholder="Nhập tuổi">
+<br>
+<input type="text" id="sex" placeholder="Nhập giới tính">
+<br>
+<input type="text" id="phone" placeholder="Nhập số điện thoại">
+<br>
+<input type="text" id="mail" placeholder="Email">
+<br>
+<button onclick="creat()"> ADD</button>
+<button onclick="luu()"> Save Edit</button>
+<table id="display"></table>
+</div>
+</body>
+</html>
+<script>
+    class Hocvien{
+        name
+        age
+        sex
+        phonenumber
+        mail
+        constructor(name,age,sex,phonenumber,mail) {
+            this.age=age;
+            this.name=name;
+            this.sex=sex;
+            this.phonenumber=phonenumber;
+            this.mail=mail;
+        }
+    }
+    let hocvien=[new Hocvien("Nguyễn Văn Đức","18","Nam","0123456","ducnguyenbvtvc@gmail.com")];
+    function creat(){
+        let name=document.getElementById("name").value
+        let age=document.getElementById("age").value;
+        let sex=document.getElementById("sex").value;
+        let phone=document.getElementById("phone").value;
+        let mail=document.getElementById("mail").value;
+        hocvien.push(new Hocvien(name,age,sex,phone,mail));
+        showP();
+    }
+    function showP(){
+        let str="<tr><td>STT</td><td>Tên</td><td>Tuổi</td><td>Giới Tính</td><td>SĐT</td><td>Mail</td>"
+        for (let i = 0; i < hocvien.length; i++) {
+            str+="<tr>"
+            str+=`<td> ${i+1}</td>`
+            str+=`<td>${hocvien[i].name}</td>`
+            str+=`<td>${hocvien[i].age}</td>`
+            str+=`<td>${hocvien[i].sex}</td>`
+            str+=`<td>${hocvien[i].phonenumber}</td>`
+            str+=`<td>${hocvien[i].mail}</td>`
+            str+=`<td> <button onclick="showedit(${i})">Edit</button>`
+            str+=`<td> <button onclick="xoa(${i})">Delete</button>`
+            str+=`</tr>`
+        }
+        document.getElementById("display").innerHTML=str
+    }
+    let index1= -1
+
+    function showedit(index){
+        document.getElementById("name").value=hocvien[index].name;
+        document.getElementById("age").value=hocvien[index].age;
+        document.getElementById("sex").value=hocvien[index].sex;
+        document.getElementById("phone").value=hocvien[index].phonenumber;
+        document.getElementById("mail").value=hocvien[index].mail;
+        index1=index;
+    }
+    function luu(){
+       let nameP=document.getElementById("name").value
+       let ageP= document.getElementById("age").value
+       let sexP=document.getElementById("sex").value
+       let phoneP=document.getElementById("phone").value
+       let mailP=document.getElementById("mail").value
+        hocvien[index1]=new Hocvien(nameP,ageP,sexP,phoneP,mailP)
+        showP();
+        index1=-1;
+    }
+    function xoa(index){
+        hocvien.splice(index,1);
+        showP();
+    }
+
+</script>
