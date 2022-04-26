@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>My Ai Phone</h1>
+<textarea id="display"></textarea>
+<br>
+<button onclick="pin()">Hiển thị Pin</button>
+<button onclick="inboxm()">Inbox</button>
+<button onclick="on()">Turn on</button>
+<button onclick="off()">Turn off</button>
+</body>
+</html>
+<script>
+   let d=document.getElementById("display").value
+   class Mobile{
+       battery;
+       inbox;
+       sent;
+       turn;
+       constructor(battery,ib,sent,turn) {
+           this.battery=battery;
+           this.inbox=ib;
+           this.sent=sent;
+           this.turn=turn
+       }
+
+       pin(){
+           if(this.turn) {
+               d=this.battery
+           }
+       }
+       on(){
+           this.turn=true;
+           this.battery--;
+           d="Ai Phôn của bạn đang bật";
+       }
+
+       inboxm(){
+           this.battery--;
+           if (this.inbox!=0)
+          d ="You have "+ this.inbox+" new message!";
+
+       }
+   }
+</script>
