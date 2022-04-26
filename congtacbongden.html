@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="click1()">Bật</button>
+<button onclick="click2()">Tắt</button>
+</body>
+</html>
+<script>
+    class SwitchButton{
+        status;
+        lamp;
+        constructor(status,lamp) {
+            this.lamp=lamp;
+            this.status=status;
+        }
+        switchon(){
+            this.status=true;
+            return this.status;
+        }
+        switchoff(){
+            this.status=false;
+            return this.status;
+        }
+    }
+    class ElectricLamp {
+        status;
+        constructor(status) {
+            this.status=status;
+        }
+        turn(status){
+            if (status) alert("Đèn đang bật")
+            else alert("Đèn đang tắt")
+        }
+    }
+    let button1=new SwitchButton();
+    let lamp1=new ElectricLamp();
+    function click1(){
+        lamp1.turn(button1.switchon());
+    }
+    function click2(){
+        lamp1.turn(button1.switchoff())
+    }
+</script>
